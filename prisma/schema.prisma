@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  APPLICATION_ADMIN
+  APPLICATION_MASTER
+  UNDEFINED
+  OSC_MASTER
+}
+
+enum OSCType {
+  ONG //Organização Não Governamental
+  AC //ASSOCIAÇÃO COMUNITARIA
+  GSI //GRUPO DE SOLIDARIO INFORMAL
+  EB //ENTIDADE BENEFICENTE
+  MS //MOVIMENTO SOCIAL
+  CA //COLETIVO DE APOIO
+  OSCIP //Organizações da Sociedade Civil de Interesse Público
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE  //Desativado
+  BLOCKED   //Bloqueado
+  SUSPENDED  //Suspenso até regularização
+}
+
+enum OSCStatus {
+  ACTIVE
+  INACTIVE  //Desativado
+  BLOCKED   //Bloqueado
+  SUSPENSE  //Suspenso até regularização
+}
+
+enum AnimalAdoptionStatus {
+  ADOPTED
+  AVAILABLE
+  PENDING
+  RESERVED
+}
+
+enum AnimalSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+model User {
+  id String @id @default(uuid())
+  name String
+  password String
+  email String @unique
+  status UserStatus @default(ACTIVE)
+  role UserRole @default(UNDEFINED)
+
+  oscId String? @unique
+  osc OSC?
+
+
+  @@map("users")
+}
+
+model OSC {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  phone String
+  OSCType OSCType
+  descriptionText String?
+  identification String @unique
+  status OSCStatus @default(ACTIVE)
+
+  user User? @relation(fields: [userId], references: [id]) // Relacionamento 1:1 com User
+  userId String? @unique
+
+  animals Animal[]
+
+  adress Address? @relation()
+
+  @@map("oscs")
+}
+
+model Address {
+  id String @id @default(uuid())
+  road String
+  number String
+  district String
+  city String
+  uf String
+  CEP String
+
+  OSCId String? @unique
+  osc OSC? @relation(fields: [OSCId], references: [id],onDelete: Cascade)
+  
+  @@map("address")
+}
+
+
+model Animal {
+  id String @id @default(uuid())
+  name String
+  description String
+  birthDate DateTime
+  weight Float //em kg
+  specie String
+  breed String
+  characteristics String //separadas por virgula ex: "bravo, carinhoso"
+  imageUrl String?
+  adoptionStatus AnimalAdoptionStatus @default(AVAILABLE)
+  size AnimalSize 
+
+  oscId String @unique
+  osc OSC @relation(fields: [oscId], references: [id])
+
+  adoption Adoption? @relation()
+
+
+  @@map("animals")
+}
+
+model Adoption {
+  id String @id @default(uuid())
+  adoptionDate DateTime @default(now())
+  
+  adopterName String
+  adopterEmail String?
+  adopterPhone String
+  adopterCPF String
+
+  animalId String @unique 
+  animal Animal @relation(fields: [animalId], references: [id])
+
+  @@map("adoptions")
+}
