@@ -87,6 +87,19 @@ export class OscsService {
     return plainToInstance(OscWithAddress, osc);
   }
 
+  async findUserOscs(userId: string):Promise<OscWithAddress | null> {
+    const osc = await this.prisma.oSC.findUnique({
+      where: {userId: userId},
+      include: {adress: {omit:{OSCId:true}}},
+    });
+
+    if (!osc) {
+      throw new NotFoundException('Usuário não possui OSC cadastrada.');
+    }
+
+    return plainToInstance(OscWithAddress, osc);
+  }
+
   async update(updateOscDto: UpdateOscDto, userId: string) {
     const osc = await this.prisma.oSC.findUnique({where: {userId: userId}});
 

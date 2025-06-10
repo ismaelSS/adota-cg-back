@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Request, UseGuards, Query } from '@nestjs/common';
 import { AnimalsService } from './animals.service';
 import { CreateAnimalDto } from './dto/create-animal.dto';
 import { UpdateAnimalDto } from './dto/update-animal.dto';
@@ -21,10 +21,16 @@ export class AnimalsController {
   async findAll() {
     return await this.animalsService.findAll();
   }
-
+  
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.animalsService.findOne(id);
+  }
+
+  @Get('/osc/animals')
+  @UseGuards(AuthGuard)
+  async findAllAnimalOsc(@Request() req: {user: JwtPayload}) {
+    return await this.animalsService.findAllAnimalOsc(req.user.sub);
   }
 
   @Post('adopt/:id')
@@ -35,7 +41,7 @@ export class AnimalsController {
 
   @Patch(':id')
   @UseGuards(AuthGuard)
-  update(@Param('id') id: string, @Body() updateAnimalDto: UpdateAnimalDto, @Request() req: {user: JwtPayload}) {
+  async update(@Param('id') id: string, @Body() updateAnimalDto: UpdateAnimalDto, @Request() req: {user: JwtPayload}) {
     return this.animalsService.update(id, updateAnimalDto, req.user.sub);
   }
 
@@ -45,8 +51,9 @@ export class AnimalsController {
     return this.animalsService.remove(id, req.user.sub);
   }
 
-  @Get('serch')
-  search(@Body() searchDto: SearchDto) {
+  @Get('search/result')
+  search(@Query() searchDto: SearchDto) {
+    console.log('Search DTO:', typeof searchDto.name);
     return this.animalsService.search(searchDto);
   }
 }

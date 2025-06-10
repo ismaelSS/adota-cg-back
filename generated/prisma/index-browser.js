@@ -165,6 +165,7 @@ exports.Prisma.AnimalScalarFieldEnum = {
   imageUrl: 'imageUrl',
   adoptionStatus: 'adoptionStatus',
   size: 'size',
+  gender: 'gender',
   oscId: 'oscId'
 };
 
@@ -234,6 +235,11 @@ exports.AnimalSize = exports.$Enums.AnimalSize = {
   SMALL: 'SMALL',
   MEDIUM: 'MEDIUM',
   LARGE: 'LARGE'
+};
+
+exports.Gender = exports.$Enums.Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
 };
 
 exports.Prisma.ModelName = {

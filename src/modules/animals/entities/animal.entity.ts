@@ -1,4 +1,4 @@
-import { AnimalAdoptionStatus, AnimalSize, OSCStatus } from "generated/prisma";
+import { AnimalAdoptionStatus, AnimalSize, Gender, OSCStatus } from "generated/prisma";
 
 export class Animal {
   id: string;
@@ -12,6 +12,7 @@ export class Animal {
   imageUrl?: string;
   adoptionStatus: AnimalAdoptionStatus;
   size: AnimalSize;
+  gender: Gender;
   osc: {
     id: string;
     name: string;

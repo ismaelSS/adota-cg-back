@@ -58,6 +58,11 @@ enum AnimalSize {
   LARGE
 }
 
+enum Gender {
+  MALE
+  FEMALE
+}
+
 model User {
   id       String     @id @default(uuid())
   name     String
@@ -119,8 +124,9 @@ model Animal {
   imageUrl        String?
   adoptionStatus  AnimalAdoptionStatus @default(AVAILABLE)
   size            AnimalSize
+  gender          Gender               @default(MALE)
 
-  oscId String @unique
+  oscId String
   osc   OSC    @relation(fields: [oscId], references: [id])
 
   adoption Adoption? @relation()

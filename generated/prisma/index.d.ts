@@ -104,6 +104,14 @@ export const AnimalSize: {
 
 export type AnimalSize = (typeof AnimalSize)[keyof typeof AnimalSize]
 
+
+export const Gender: {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
+};
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -129,6 +137,10 @@ export const AnimalAdoptionStatus: typeof $Enums.AnimalAdoptionStatus
 export type AnimalSize = $Enums.AnimalSize
 
 export const AnimalSize: typeof $Enums.AnimalSize
+
+export type Gender = $Enums.Gender
+
+export const Gender: typeof $Enums.Gender
 
 /**
  * ##  Prisma Client ʲˢ
@@ -4773,6 +4785,7 @@ export namespace Prisma {
     imageUrl: string | null
     adoptionStatus: $Enums.AnimalAdoptionStatus | null
     size: $Enums.AnimalSize | null
+    gender: $Enums.Gender | null
     oscId: string | null
   }
 
@@ -4788,6 +4801,7 @@ export namespace Prisma {
     imageUrl: string | null
     adoptionStatus: $Enums.AnimalAdoptionStatus | null
     size: $Enums.AnimalSize | null
+    gender: $Enums.Gender | null
     oscId: string | null
   }
 
@@ -4803,6 +4817,7 @@ export namespace Prisma {
     imageUrl: number
     adoptionStatus: number
     size: number
+    gender: number
     oscId: number
     _all: number
   }
@@ -4828,6 +4843,7 @@ export namespace Prisma {
     imageUrl?: true
     adoptionStatus?: true
     size?: true
+    gender?: true
     oscId?: true
   }
 
@@ -4843,6 +4859,7 @@ export namespace Prisma {
     imageUrl?: true
     adoptionStatus?: true
     size?: true
+    gender?: true
     oscId?: true
   }
 
@@ -4858,6 +4875,7 @@ export namespace Prisma {
     imageUrl?: true
     adoptionStatus?: true
     size?: true
+    gender?: true
     oscId?: true
     _all?: true
   }
@@ -4960,6 +4978,7 @@ export namespace Prisma {
     imageUrl: string | null
     adoptionStatus: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender: $Enums.Gender
     oscId: string
     _count: AnimalCountAggregateOutputType | null
     _avg: AnimalAvgAggregateOutputType | null
@@ -4994,6 +5013,7 @@ export namespace Prisma {
     imageUrl?: boolean
     adoptionStatus?: boolean
     size?: boolean
+    gender?: boolean
     oscId?: boolean
     osc?: boolean | OSCDefaultArgs<ExtArgs>
     adoption?: boolean | Animal$adoptionArgs<ExtArgs>
@@ -5011,6 +5031,7 @@ export namespace Prisma {
     imageUrl?: boolean
     adoptionStatus?: boolean
     size?: boolean
+    gender?: boolean
     oscId?: boolean
     osc?: boolean | OSCDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["animal"]>
@@ -5027,6 +5048,7 @@ export namespace Prisma {
     imageUrl?: boolean
     adoptionStatus?: boolean
     size?: boolean
+    gender?: boolean
     oscId?: boolean
     osc?: boolean | OSCDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["animal"]>
@@ -5043,10 +5065,11 @@ export namespace Prisma {
     imageUrl?: boolean
     adoptionStatus?: boolean
     size?: boolean
+    gender?: boolean
     oscId?: boolean
   }
 
-  export type AnimalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "birthDate" | "weight" | "specie" | "breed" | "characteristics" | "imageUrl" | "adoptionStatus" | "size" | "oscId", ExtArgs["result"]["animal"]>
+  export type AnimalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "birthDate" | "weight" | "specie" | "breed" | "characteristics" | "imageUrl" | "adoptionStatus" | "size" | "gender" | "oscId", ExtArgs["result"]["animal"]>
   export type AnimalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     osc?: boolean | OSCDefaultArgs<ExtArgs>
     adoption?: boolean | Animal$adoptionArgs<ExtArgs>
@@ -5076,6 +5099,7 @@ export namespace Prisma {
       imageUrl: string | null
       adoptionStatus: $Enums.AnimalAdoptionStatus
       size: $Enums.AnimalSize
+      gender: $Enums.Gender
       oscId: string
     }, ExtArgs["result"]["animal"]>
     composites: {}
@@ -5513,6 +5537,7 @@ export namespace Prisma {
     readonly imageUrl: FieldRef<"Animal", 'String'>
     readonly adoptionStatus: FieldRef<"Animal", 'AnimalAdoptionStatus'>
     readonly size: FieldRef<"Animal", 'AnimalSize'>
+    readonly gender: FieldRef<"Animal", 'Gender'>
     readonly oscId: FieldRef<"Animal", 'String'>
   }
     
@@ -7099,6 +7124,7 @@ export namespace Prisma {
     imageUrl: 'imageUrl',
     adoptionStatus: 'adoptionStatus',
     size: 'size',
+    gender: 'gender',
     oscId: 'oscId'
   };
 
@@ -7270,6 +7296,20 @@ export namespace Prisma {
    * Reference to a field of type 'AnimalSize[]'
    */
   export type ListEnumAnimalSizeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AnimalSize[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender'
+   */
+  export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
+    
+
+
+  /**
+   * Reference to a field of type 'Gender[]'
+   */
+  export type ListEnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender[]'>
     
 
 
@@ -7521,6 +7561,7 @@ export namespace Prisma {
     imageUrl?: StringNullableFilter<"Animal"> | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFilter<"Animal"> | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFilter<"Animal"> | $Enums.AnimalSize
+    gender?: EnumGenderFilter<"Animal"> | $Enums.Gender
     oscId?: StringFilter<"Animal"> | string
     osc?: XOR<OSCScalarRelationFilter, OSCWhereInput>
     adoption?: XOR<AdoptionNullableScalarRelationFilter, AdoptionWhereInput> | null
@@ -7538,6 +7579,7 @@ export namespace Prisma {
     imageUrl?: SortOrderInput | SortOrder
     adoptionStatus?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     oscId?: SortOrder
     osc?: OSCOrderByWithRelationInput
     adoption?: AdoptionOrderByWithRelationInput
@@ -7545,7 +7587,6 @@ export namespace Prisma {
 
   export type AnimalWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    oscId?: string
     AND?: AnimalWhereInput | AnimalWhereInput[]
     OR?: AnimalWhereInput[]
     NOT?: AnimalWhereInput | AnimalWhereInput[]
@@ -7559,9 +7600,11 @@ export namespace Prisma {
     imageUrl?: StringNullableFilter<"Animal"> | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFilter<"Animal"> | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFilter<"Animal"> | $Enums.AnimalSize
+    gender?: EnumGenderFilter<"Animal"> | $Enums.Gender
+    oscId?: StringFilter<"Animal"> | string
     osc?: XOR<OSCScalarRelationFilter, OSCWhereInput>
     adoption?: XOR<AdoptionNullableScalarRelationFilter, AdoptionWhereInput> | null
-  }, "id" | "oscId">
+  }, "id">
 
   export type AnimalOrderByWithAggregationInput = {
     id?: SortOrder
@@ -7575,6 +7618,7 @@ export namespace Prisma {
     imageUrl?: SortOrderInput | SortOrder
     adoptionStatus?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     oscId?: SortOrder
     _count?: AnimalCountOrderByAggregateInput
     _avg?: AnimalAvgOrderByAggregateInput
@@ -7598,6 +7642,7 @@ export namespace Prisma {
     imageUrl?: StringNullableWithAggregatesFilter<"Animal"> | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusWithAggregatesFilter<"Animal"> | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeWithAggregatesFilter<"Animal"> | $Enums.AnimalSize
+    gender?: EnumGenderWithAggregatesFilter<"Animal"> | $Enums.Gender
     oscId?: StringWithAggregatesFilter<"Animal"> | string
   }
 
@@ -7919,6 +7964,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
     osc: OSCCreateNestedOneWithoutAnimalsInput
     adoption?: AdoptionCreateNestedOneWithoutAnimalInput
   }
@@ -7935,6 +7981,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
     oscId: string
     adoption?: AdoptionUncheckedCreateNestedOneWithoutAnimalInput
   }
@@ -7951,6 +7998,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     osc?: OSCUpdateOneRequiredWithoutAnimalsNestedInput
     adoption?: AdoptionUpdateOneWithoutAnimalNestedInput
   }
@@ -7967,6 +8015,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     oscId?: StringFieldUpdateOperationsInput | string
     adoption?: AdoptionUncheckedUpdateOneWithoutAnimalNestedInput
   }
@@ -7983,6 +8032,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
     oscId: string
   }
 
@@ -7998,6 +8048,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
 
   export type AnimalUncheckedUpdateManyInput = {
@@ -8012,6 +8063,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     oscId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -8383,6 +8435,13 @@ export namespace Prisma {
     not?: NestedEnumAnimalSizeFilter<$PrismaModel> | $Enums.AnimalSize
   }
 
+  export type EnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
   export type OSCScalarRelationFilter = {
     is?: OSCWhereInput
     isNot?: OSCWhereInput
@@ -8405,6 +8464,7 @@ export namespace Prisma {
     imageUrl?: SortOrder
     adoptionStatus?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     oscId?: SortOrder
   }
 
@@ -8424,6 +8484,7 @@ export namespace Prisma {
     imageUrl?: SortOrder
     adoptionStatus?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     oscId?: SortOrder
   }
 
@@ -8439,6 +8500,7 @@ export namespace Prisma {
     imageUrl?: SortOrder
     adoptionStatus?: SortOrder
     size?: SortOrder
+    gender?: SortOrder
     oscId?: SortOrder
   }
 
@@ -8494,6 +8556,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAnimalSizeFilter<$PrismaModel>
     _max?: NestedEnumAnimalSizeFilter<$PrismaModel>
+  }
+
+  export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
   export type AnimalScalarRelationFilter = {
@@ -8731,6 +8803,10 @@ export namespace Prisma {
     set?: $Enums.AnimalSize
   }
 
+  export type EnumGenderFieldUpdateOperationsInput = {
+    set?: $Enums.Gender
+  }
+
   export type OSCUpdateOneRequiredWithoutAnimalsNestedInput = {
     create?: XOR<OSCCreateWithoutAnimalsInput, OSCUncheckedCreateWithoutAnimalsInput>
     connectOrCreate?: OSCCreateOrConnectWithoutAnimalsInput
@@ -8961,6 +9037,13 @@ export namespace Prisma {
     not?: NestedEnumAnimalSizeFilter<$PrismaModel> | $Enums.AnimalSize
   }
 
+  export type NestedEnumGenderFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderFilter<$PrismaModel> | $Enums.Gender
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -9009,6 +9092,16 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAnimalSizeFilter<$PrismaModel>
     _max?: NestedEnumAnimalSizeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumGenderWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel>
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel>
+    not?: NestedEnumGenderWithAggregatesFilter<$PrismaModel> | $Enums.Gender
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumGenderFilter<$PrismaModel>
+    _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
   export type OSCCreateWithoutUserInput = {
@@ -9116,6 +9209,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
     adoption?: AdoptionCreateNestedOneWithoutAnimalInput
   }
 
@@ -9131,6 +9225,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
     adoption?: AdoptionUncheckedCreateNestedOneWithoutAnimalInput
   }
 
@@ -9231,6 +9326,7 @@ export namespace Prisma {
     imageUrl?: StringNullableFilter<"Animal"> | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFilter<"Animal"> | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFilter<"Animal"> | $Enums.AnimalSize
+    gender?: EnumGenderFilter<"Animal"> | $Enums.Gender
     oscId?: StringFilter<"Animal"> | string
   }
 
@@ -9465,6 +9561,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
     osc: OSCCreateNestedOneWithoutAnimalsInput
   }
 
@@ -9480,6 +9577,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
     oscId: string
   }
 
@@ -9511,6 +9609,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     osc?: OSCUpdateOneRequiredWithoutAnimalsNestedInput
   }
 
@@ -9526,6 +9625,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     oscId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9541,6 +9641,7 @@ export namespace Prisma {
     imageUrl?: string | null
     adoptionStatus?: $Enums.AnimalAdoptionStatus
     size: $Enums.AnimalSize
+    gender?: $Enums.Gender
   }
 
   export type AnimalUpdateWithoutOscInput = {
@@ -9555,6 +9656,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     adoption?: AdoptionUpdateOneWithoutAnimalNestedInput
   }
 
@@ -9570,6 +9672,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     adoption?: AdoptionUncheckedUpdateOneWithoutAnimalNestedInput
   }
 
@@ -9585,6 +9688,7 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     adoptionStatus?: EnumAnimalAdoptionStatusFieldUpdateOperationsInput | $Enums.AnimalAdoptionStatus
     size?: EnumAnimalSizeFieldUpdateOperationsInput | $Enums.AnimalSize
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
   }
 
 

@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, IsOptional, IsDateString, IsNumber, IsEnum } from 'class-validator';
-import { AnimalAdoptionStatus, AnimalSize } from 'generated/prisma';
+import { AnimalAdoptionStatus, AnimalSize, Gender } from 'generated/prisma';
 
 export class CreateAnimalDto {
   @IsString({ message: 'O nome deve ser uma string' })
@@ -29,7 +29,7 @@ export class CreateAnimalDto {
   characteristics: string;
 
   @IsString({ message: 'A URL da imagem deve ser uma string' })
-  @IsOptional()
+  @IsOptional()   
   imageUrl?: string;
 
   @IsEnum(AnimalAdoptionStatus, { message: 'Status de adoção inválido' })
@@ -38,5 +38,8 @@ export class CreateAnimalDto {
 
   @IsEnum(AnimalSize, { message: 'Tamanho inválido' })
   size: AnimalSize;
+
+  @IsEnum(Gender, { message: 'O gênero deve MALE OU FEMALE' })
+  gender: Gender;
 
 }

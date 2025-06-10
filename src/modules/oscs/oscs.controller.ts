@@ -6,6 +6,7 @@ import { AuthGuard } from 'src/guards/jwt.guard';
 import { JwtPayload } from 'src/interfaces/jwt-payload.interface';
 import { IsAdminGuard } from 'src/guards/is-admin.guard';
 import { UpdateOscAdressDto } from './dto/update-osc-address.dto';
+import { use } from 'passport';
 
 @Controller('oscs')
 export class OscsController {
@@ -26,6 +27,12 @@ export class OscsController {
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.oscsService.findOne(id);
+  }
+
+  @Get('/auth/my')
+  @UseGuards(AuthGuard)
+  async findUserOscs(@Request() req: {user: JwtPayload}) {
+    return await this.oscsService.findUserOscs(req.user.sub);
   }
 
   @Patch()

@@ -8,6 +8,11 @@ async function bootstrap() {
     new ValidationPipe({whitelist: true}),
     new ValidationPipe({transform: true, transformOptions:{groups: ['transform']}}),
   );
+    app.enableCors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Accept, Authorization',
+  });
   await app.listen(process.env.PORT ?? 3333);
 }
 bootstrap();
