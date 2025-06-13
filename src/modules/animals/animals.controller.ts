@@ -53,7 +53,6 @@ export class AnimalsController {
 
   @Get('search/result')
   search(@Query() searchDto: SearchDto) {
-    console.log('Search DTO:', typeof searchDto.name);
     return this.animalsService.search(searchDto);
   }
 }

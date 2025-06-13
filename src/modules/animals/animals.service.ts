@@ -139,6 +139,7 @@ export class AnimalsService {
       adoptionStatus: true,
       size: true,
       oscId: false,
+      gender: true,
       osc: {
         select: {
           id: true,
