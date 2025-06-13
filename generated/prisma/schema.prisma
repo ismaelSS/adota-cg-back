@@ -26,8 +26,8 @@ enum OSCType {
   AC //ASSOCIAÇÃO COMUNITARIA
   GSI //GRUPO DE SOLIDARIO INFORMAL
   EB //ENTIDADE BENEFICENTE
-  MS //MOVIMENTO SOCIAL
-  CA //COLETIVO DE APOIO
+  MS //L
+  CA //COLETIVO DE APOIOMOVIMENTO SOCIA
   OSCIP //Organizações da Sociedade Civil de Interesse Público
 }
 
@@ -87,7 +87,7 @@ model OSC {
   identification  String    @unique
   status          OSCStatus @default(ACTIVE)
 
-  user   User?   @relation(fields: [userId], references: [id]) // Relacionamento 1:1 com User
+  user   User?   @relation(fields: [userId], references: [id])
   userId String? @unique
 
   animals Animal[]
