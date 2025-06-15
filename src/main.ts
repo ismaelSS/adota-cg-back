@@ -9,7 +9,7 @@ async function bootstrap() {
     new ValidationPipe({transform: true, transformOptions:{groups: ['transform']}}),
   );
     app.enableCors({
-    origin: process.env.ORIGIN_URL,
+    origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Accept, Authorization',
   });
